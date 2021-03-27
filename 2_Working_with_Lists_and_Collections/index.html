@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Your seat reservations
+        <span data-bind="text: seats().length"></span>
+        </h2>
+        
+        <table>
+            <thead><tr>
+                <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
+            </tr></thead>
+            <!-- Todo: Generate table body -->
+            <tbody data-bind="foreach: seats">
+            <tr>
+            <td><input data-bind="value: name" /></td>
+            <td><select data-bind="options: $root.availableMeals, value:meal, optionsText:'mealName'"></select></td>
+            <td data-bind="text: formattedPrice"></td>
+            <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
+            </tr>
+            
+            </tbody>
+        </table>
+        <button data-bind="click: addSeat, enable:seats().length <= 5 ">Reserve another seat </button>
+        <h3 data-bind="visible: totalSurCharge() > 0">
+        Total surcharge: $ <span data-bind="text: totalSurCharge().toFixed(2)"></span>
+        </h3>
+</body>
+</html>
